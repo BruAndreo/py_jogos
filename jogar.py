@@ -1,8 +1,9 @@
 import adivinhacao
 import forca
+import utils.util as utils
 
 def iniciar():
-    print("Iniciar jogo")
+    utils.boas_vindas_msg("Bem vindo ao Py_Jogos")
 
 if (__name__ == "__main__"):
     iniciar()
