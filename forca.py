@@ -2,27 +2,28 @@ import random
 import utils.util as utils
 import utils.mensagens as mensagens
 
-erros = 0
 
 def jogar():
     utils.boas_vindas_msg("Olá seja bem-vindo ao jogo de forca")
 
+    erros = 0
     enforcou = False
     acertou = False
     palavra_secreta = seleciona_palavra_secreta()
     letras_acertadas = inicializa_letras_acertadas(palavra_secreta)
     
     while (not enforcou and not acertou):
-        chute = pegar_letra_informada(letras_acertadas)
+        chute = pegar_letra_informada(letras_acertadas, erros)
 
         if chute not in palavra_secreta:
-            registra_erro()
+            erros += 1
             continue
         
         index = 0
         for letra in palavra_secreta:
             if chute == letra:
                 letras_acertadas[index] = letra
+            index += 1
 
         enforcou = erros == 7
         acertou = "_" not in letras_acertadas
@@ -42,10 +43,7 @@ def seleciona_palavra_secreta():
 def inicializa_letras_acertadas(palavra):
     return ["_" for letra in palavra]
 
-def registra_erro():
-    erros += 1
-
-def pegar_letra_informada(letras_acertadas):
+def pegar_letra_informada(letras_acertadas, erros):
     mensagens.desenha_forca(erros)
     print(letras_acertadas)
     letra = input("Qual letra? ").strip().upper()
