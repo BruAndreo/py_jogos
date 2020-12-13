@@ -24,3 +24,12 @@ def selecionar_dificuldade():
             exit()
         else:
             print("É necessário informar um nível de dificuldade válido")
+
+def ler_arquivo():
+    palavras = []
+
+    with open("utils/palavras.txt") as arquivo:
+        for linha in arquivo:
+            palavras.append(linha.strip())
+
+    return palavras
