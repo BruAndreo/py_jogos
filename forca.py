@@ -2,7 +2,6 @@ import random
 import utils.util as utils
 import utils.mensagens as mensagens
 
-
 def jogar():
     utils.boas_vindas_msg("Olá seja bem-vindo ao jogo de forca")
 
@@ -17,6 +16,7 @@ def jogar():
 
         if chute not in palavra_secreta:
             erros += 1
+            enforcou = erros == 7
             continue
         
         index = 0
@@ -25,11 +25,11 @@ def jogar():
                 letras_acertadas[index] = letra
             index += 1
 
-        enforcou = erros == 7
+        #enforcou = erros == 7
         acertou = "_" not in letras_acertadas
 
     if enforcou:
-        mensagens.imprime_mensagem_perdedor()
+        mensagens.imprime_mensagem_perdedor(palavra_secreta)
 
     if acertou:
         mensagens.imprime_mensagem_vencedor()
